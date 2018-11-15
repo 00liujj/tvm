@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.2)
 
 if (ARM)
   set(CMAKE_TOOLCHAIN_FILE /data/public-space/toolchains/linux-gcc-4.9-arm-hard-toolchain.cmake)
-else if (ANDROID)
+elseif (ANDROID)
   set(ANDROID_NDK /opt/android-ndk-r14b/)
   #set(ANDROID_TOOLCHAIN_NAME arm-linux-androideabi-4.9)
   #set(ANDROID_ABI "armeabi-v7a with NEON")
