@@ -90,7 +90,7 @@ target_host = None
 target = tvm.target.mali('rk3399')
 #target = "llvm -device=arm_cpu -target=arm64-linux-android -mattr=+neon"
 target = tvm.target.arm_cpu('rasp3b')
-target = "llvm -device=arm_cpu -target=arm-linux-gnueabihf -mattr=+neon"
+target = "llvm -device=arm_cpu -model=bcm2837 -target=armv7l-linux-gnueabihf -mattr=+neon"
 #target = "llvm"
 print('target', target, 'target_host', target_host)
 with nnvm.compiler.build_config(opt_level=opt_level):

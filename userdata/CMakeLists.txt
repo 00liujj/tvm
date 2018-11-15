@@ -17,7 +17,8 @@ endif ()
 
 project(tvmtest C CXX)
 
-set(CMAKE_BUILD_TYPE Debug)
+#set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_BUILD_TYPE Release)
 
 add_definitions(-std=c++11)
 
