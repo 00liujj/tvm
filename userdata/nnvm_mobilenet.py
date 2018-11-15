@@ -75,7 +75,7 @@ net, params = nnvm.testing.mobilenet.get_workload(batch_size=batch_size, image_s
 # Then the machine code will be generated as the module library.
 
 import logging
-logging.basicConfig(level=logging.DEBUG) # to dump TVM IR after fusion
+#logging.basicConfig(level=logging.DEBUG) # to dump TVM IR after fusion
 
 opt_level = 3
 #target = tvm.target.cuda()
@@ -84,12 +84,18 @@ opt_level = 3
 #target = "llvm -target=arm -mattr=+neon -mfloat-abi=hard -mcpu=cortex-a9"
 #target = tvm.target.rasp()
 target = tvm.target.arm_cpu("mate10")
-print(target)
-target = "llvm -device=arm_cpu -target=arm64-linux-android -mattr=+neon"
-print(target)
+print('target for mate10', target)
+target_host = "llvm -device=arm_cpu -target=arm64-linux-android -mattr=+neon"
+target_host = None
+target = tvm.target.mali('rk3399')
+#target = "llvm -device=arm_cpu -target=arm64-linux-android -mattr=+neon"
+target = tvm.target.arm_cpu('rasp3b')
+target = "llvm -device=arm_cpu -target=arm-linux-gnueabihf -mattr=+neon"
+#target = "llvm"
+print('target', target, 'target_host', target_host)
 with nnvm.compiler.build_config(opt_level=opt_level):
     graph, lib, params = nnvm.compiler.build(
-        net, target, shape={"data": data_shape}, params=params)
+        net, target, target_host=target_host, shape={"data": data_shape}, params=params)
 
 
 import sys, os

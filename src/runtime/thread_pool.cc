@@ -76,7 +76,7 @@ class ParallelLauncher {
     std::string err("");
     for (size_t i = 0; i < par_errors_.size(); ++i) {
       if (par_errors_[i].length() != 0) {
-        err += "Task " + std::to_string(i) + " error: " + par_errors_[i] + '\n';
+        err += "Task " + std::string("xx") + " error: " + par_errors_[i] + '\n';
         par_errors_[i].clear();
       }
     }
